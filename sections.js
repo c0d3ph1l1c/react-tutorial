@@ -5,6 +5,8 @@ const sections = [
     'MainConcepts_04ComponentsAndProps',
     'MainConcepts_05StateAndLifecycle',
     'MainConcepts_06HandlingEvents',
+    'MainConcepts_07ConditionalRendering',
+    'MainConcepts_08ListsAndKeys',
 ];
 
 module.exports = sections;
