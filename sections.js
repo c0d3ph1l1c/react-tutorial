@@ -7,6 +7,8 @@ const sections = [
     'MainConcepts_06HandlingEvents',
     'MainConcepts_07ConditionalRendering',
     'MainConcepts_08ListsAndKeys',
+    'MainConcepts_09Forms',
+    'MainConcepts_10LiftingStateUp',
 ];
 
 module.exports = sections;
