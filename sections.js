@@ -9,6 +9,8 @@ const sections = [
     'MainConcepts_08ListsAndKeys',
     'MainConcepts_09Forms',
     'MainConcepts_10LiftingStateUp',
+    'MainConcepts_11CompositionVsInheritance',
+    'MainConcepts_12ThinkingInReact',
 ];
 
 module.exports = sections;
