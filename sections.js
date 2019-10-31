@@ -11,6 +11,8 @@ const sections = [
     'MainConcepts_10LiftingStateUp',
     'MainConcepts_11CompositionVsInheritance',
     'MainConcepts_12ThinkingInReact',
+    'AdvancedGuides_01Accessibility',
+    'AdvancedGuides_02CodeSplitting',
 ];
 
 module.exports = sections;
