@@ -13,6 +13,7 @@ const sections = [
     'MainConcepts_12ThinkingInReact',
     'AdvancedGuides_01Accessibility',
     'AdvancedGuides_02CodeSplitting',
+    'AdvancedGuides_03Context',
 ];
 
 module.exports = sections;
