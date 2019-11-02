@@ -73,7 +73,7 @@ import ReactDOM from 'react-dom';
 
 // class ThemedButton extends React.Component {
 //   // Assign a contextType to read the current theme context.
-//   // React will find thte closest theme Provider above and use its value.
+//   // React will find the closest theme Provider above and use its value.
 //   // In this example, the current theme is "dark". 
 //   static contextType = ThemeContext;
 //   render() {
@@ -156,4 +156,279 @@ import ReactDOM from 'react-dom';
 //       content={content}
 //     />
 //   );
+// }
+
+/*****
+    API
+*****/
+/* React.createContent */
+/*
+    Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching Provider above it in the tree.
+
+    The defaultValue argument is only used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing undefined as a Provider value does not cause consuming components to use defaultValue.
+*/
+// const MyContext = React.createContent(defaultValue);
+
+/* Context.Provider */
+/*
+    Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
+
+    Accepts a value prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+
+    All consumers that are descendants of a Provider will re-render whenever the Provider’s value prop changes. The propagation from Provider to its descendant consumers is not subject to the shouldComponentUpdate method, so the consumer is updated even when an ancestor component bails out of the update.
+
+    Changes are determined by comparing the new and old values using the same algorithm as Object.is.
+*/
+// <MyContext.Provider value={/* some value */}>
+
+/* Class.contextType */
+// class MyClass extends React.Component {
+//     componentDidMount() {
+//         let value = this.context;
+//         /* perform a side-effect at mount using the value of MyContext */
+//     }
+
+//     componentDidUpdate() {
+//         let value = this.context;
+//         /* ... */
+//     }
+
+//     componentWillUnmount() {
+//         let value = this.context;
+//         /* ... */
+//     }
+
+//     render() {
+//         let value = this.context;
+//         /* render something based on the value of MyContext */
+//     }
+// } 
+// MyClass.contextType = MyContext;
+
+/*
+    If you are using the experimental public class fields syntax, you can use a static class field to initialize your contextType.
+*/
+// class MyClass extends React.Component {
+//     static contextType = MyContext;
+//     render() {
+//         let value = this.context;
+//         /* render something based on the value */
+//     }
+// }
+
+/* Context.Consumer */
+/*
+    A React component that subscribes to context changes. This lets you subscribe to a context within a function component.
+
+    Requires a function as a child. The function receives the current context value and returns a React node. The value argument passed to the function will be equal to the value prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the value argument will be equal to the defaultValue that was passed to createContext().
+*/
+
+// <MyContext.Consumer>
+//     {value => /* render something based on the context value */}
+// </MyContext.Consumer>
+
+/* Context.displayName */ 
+/*
+    Context object accepts a displayName string property. React DevTools uses this string to determine what to display for the context.
+
+    For example, the following component will appear as MyDisplayName in the DevTools:
+*/
+// const MyContext = React.createContext(/* some value */);
+// MyContext.displayName = 'MyDisplayName';
+
+// <MyContext.Provider>    // "MyDisplayName.Provider" in DevTools
+// <MyContext.Consumer>    // "MyDisplayName.Consumer" in DevTools
+
+/*****
+    Examples
+*****/
+// import {ThemeContext, themes} from './theme-context';
+// import ThemedButton from './themed-button';
+
+// // An intermediate component that uses ThemedButton
+// function Toolbar(props) {
+//     return (
+//         <ThemedButton onClick={props.changeTheme}>
+//             Change Theme
+//         </ThemedButton>
+//     );
+// }
+
+// class App extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             theme: themes.light
+//         };
+        
+//         this.toggleTheme = () => {
+//             this.setState(state => ({
+//                 theme: 
+//                 state.theme === themes.dark?
+//                 themes.light : themes.dark,
+//             }))
+//         };
+//     }
+
+//     render() {
+//         // The ThemedButton button inside the ThemeProvider
+//         // uses the theme from state while the one outside uses the default dark theme
+//         return (
+//             <div>
+//                 <ThemeContext.Provider value={this.state.theme}>
+//                     <Toolbar changeTheme={this.toggleTheme} />
+//                 </ThemeContext.Provider>
+//                 <div>
+//                     <ThemedButton />
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+/* Updating Context from a Nested Component */
+/*
+    It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context.
+*/
+// import {ThemeContext, themes} from './theme-context';
+// import ThemeTogglerButton from './theme-toggler-button';
+
+// class App extends React.Component {
+//     constructor(props) {
+//         super(props);
+
+//         this.toggleTheme = () => {
+//             this.setState(state => ({
+//                 theme: 
+//                     state.theme === themes.dark?
+//                         themes.light : themes.dark, 
+//             }));
+//         };
+
+//         // State also contains the updater function so it will 
+//         // be passed down into the context provider
+//         this.state = {
+//             theme: themes.light,
+//             toggleTheme: this.toggleTheme,
+//         };
+//     }
+
+//     render() {
+//         // The entire state is passed to the provider
+//         return (
+//             <ThemeContext.Provider value={this.state}>
+//                 <Content />
+//             </ThemeContext.Provider>
+//         )
+//     };
+// }
+
+// function Content() {
+//     return (
+//         <div>
+//             <ThemeTogglerButton />
+//         </div>
+//     );
+// }
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+/* Consuming Multiple Contexts */
+// Theme context, default to light theme
+const ThemeContext = React.createContext('light');
+
+// Signed-in user context
+const UserContext = React.createContext({
+    name: 'Guest',
+});
+
+class App extends React.Component {
+    render() {
+        const {signedInUser, theme} = this.props;
+
+        // App component that provides initial context values
+        return (
+            <ThemeContext.Provider value={theme}>
+                <UserContext.Provider value={signedInUser}>
+                    <Layout />
+                </UserContext.Provider>
+            </ThemeContext.Provider>
+        );
+    }
+}
+
+function Layout() {
+    return (
+        <div>
+            <Sidebar />
+            <Content />
+        </div>
+    );
+}
+
+// A component may consume multiple contexts
+function Content() {
+    return (
+        <ThemeContext.Consumer>
+            {theme =>
+                <UserContext.Consumer>
+                    {user => (
+                        <ProfilePage user={user} theme={theme} />
+                    )}
+                </UserContext.Consumer>
+            }
+        </ThemeContext.Consumer>
+    );
+}
+
+function Sidebar() {
+    return (
+        <div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Friends</a></li>
+                <li><a href="#">Setting</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </div>
+    );
+}
+
+function ProfilePage(props) {
+    return (
+        <div>
+            <h1>
+                {props.user.name}
+            </h1>
+        </div>
+    );
+}
+
+const user = {name: 'John'};
+
+ReactDOM.render(
+    <App 
+        signedInUser={user}
+        theme="dark"
+    />,
+    document.getElementById('root')
+);
+
+/*****
+    Caveats
+*****/
+/*
+    Because context uses reference identity to determine when to re - render, there are some gotchas that could trigger unintentional renders in consumers when a provider’ s parent re - renders.For example, the code below will re - render all consumers every time the Provider re - renders because a new object is always created
+    for value.
+*/
+// class App extends React.Component {
+//     render() {
+//         return (
+//             <Provider value={{something: 'something'}}>
+//                 <Toolbar />
+//             </Provider>
+//         );
+//     }
 // }
