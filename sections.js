@@ -14,6 +14,8 @@ const sections = [
     'AdvancedGuides_01Accessibility',
     'AdvancedGuides_02CodeSplitting',
     'AdvancedGuides_03Context',
+    'AdvancedGuides_04ErrorBoundaries',
+    'AdvancedGuides_05ForwardingRefs',
 ];
 
 module.exports = sections;
