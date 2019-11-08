@@ -16,6 +16,7 @@ const sections = [
     'AdvancedGuides_03Context',
     'AdvancedGuides_04ErrorBoundaries',
     'AdvancedGuides_05ForwardingRefs',
+    'AdvancedGuides_06Fragments',
 ];
 
 module.exports = sections;
