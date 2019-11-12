@@ -18,6 +18,7 @@ const sections = [
     'AdvancedGuides_05ForwardingRefs',
     'AdvancedGuides_06Fragments',
     'AdvancedGuides_07HigherOrderComponents',
+    'AdvancedGuides_08IntegratingWithOtherLibraries',
 ];
 
 module.exports = sections;
