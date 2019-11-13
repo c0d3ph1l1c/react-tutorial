@@ -19,6 +19,7 @@ const sections = [
     'AdvancedGuides_06Fragments',
     'AdvancedGuides_07HigherOrderComponents',
     'AdvancedGuides_08IntegratingWithOtherLibraries',
+    'AdvancedGuides_09JSXInDepth',
 ];
 
 module.exports = sections;
