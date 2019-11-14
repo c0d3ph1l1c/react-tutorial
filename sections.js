@@ -20,6 +20,7 @@ const sections = [
     'AdvancedGuides_07HigherOrderComponents',
     'AdvancedGuides_08IntegratingWithOtherLibraries',
     'AdvancedGuides_09JSXInDepth',
+    'AdvancedGuides_10OptimizingPerformance',
 ];
 
 module.exports = sections;
