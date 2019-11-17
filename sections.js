@@ -21,6 +21,7 @@ const sections = [
     'AdvancedGuides_08IntegratingWithOtherLibraries',
     'AdvancedGuides_09JSXInDepth',
     'AdvancedGuides_10OptimizingPerformance',
+    'AdvancedGuides_11Portals',
 ];
 
 module.exports = sections;
