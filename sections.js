@@ -22,6 +22,8 @@ const sections = [
     'AdvancedGuides_09JSXInDepth',
     'AdvancedGuides_10OptimizingPerformance',
     'AdvancedGuides_11Portals',
+    'AdvancedGuides_12Profiler',
+    'AdvancedGuides_13ReactWithoutES6',
 ];
 
 module.exports = sections;
