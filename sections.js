@@ -26,6 +26,7 @@ const sections = [
     'AdvancedGuides_13ReactWithoutES6',
     'AdvancedGuides_14ReactWithoutJSX',
     'AdvancedGuides_15Reconciliation',
+    'AdvancedGuides_16Refs&TheDom',
 ];
 
 module.exports = sections;
