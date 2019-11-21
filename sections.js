@@ -27,6 +27,8 @@ const sections = [
     'AdvancedGuides_14ReactWithoutJSX',
     'AdvancedGuides_15Reconciliation',
     'AdvancedGuides_16Refs&TheDom',
+    'AdvancedGuides_17RenderProps',
+    'AdvancedGuides_18StaticTypeChecking',
 ];
 
 module.exports = sections;
