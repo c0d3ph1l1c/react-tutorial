@@ -29,6 +29,7 @@ const sections = [
     'AdvancedGuides_16Refs&TheDom',
     'AdvancedGuides_17RenderProps',
     'AdvancedGuides_18StaticTypeChecking',
+    'AdvancedGuides_19StrictMode',
 ];
 
 module.exports = sections;
