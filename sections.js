@@ -31,6 +31,8 @@ const sections = [
     'AdvancedGuides_18StaticTypeChecking',
     'AdvancedGuides_19StrictMode',
     'AdvancedGuides_20TypecheckingWithPropTypes',
+    'AdvancedGuides_21UncontrolledComponents',
+    'AdvancedGuides_22WebComponents',
 ];
 
 module.exports = sections;
