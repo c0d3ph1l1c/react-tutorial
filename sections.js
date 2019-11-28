@@ -33,6 +33,7 @@ const sections = [
     'AdvancedGuides_20TypecheckingWithPropTypes',
     'AdvancedGuides_21UncontrolledComponents',
     'AdvancedGuides_22WebComponents',
+    'Hooks_01IntroducingHooks',
 ];
 
 module.exports = sections;
